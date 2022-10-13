@@ -1,0 +1,44 @@
+.form {
+  width: 30%;
+  height: calc(100vh - 50px);
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  &__container {
+    padding: 5rem 3rem;
+    border: 4px solid gray;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  &__title {
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: lighter;
+    align-items: center;
+    display: flex;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+    button,
+    input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid gray;
+      outline: none;
+    }
+    button {
+      margin-top: 3rem;
+      &:hover {
+        background-color: blue;
+        color: white;
+      }
+    }
+  }
+}
