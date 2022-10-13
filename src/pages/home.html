@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>
+    window.CONFIG = {
+      components: [],
+    };
+  </script>
+  <include src="components/Shared/head/head.html">
+    {
+    "title_text": "Home Page"
+    }
+  </include>
+</head>
+
+<body>
+  <module href="src/components/Shared/Appbar.html"></module>
+  <main class="main__container">
+    <module href="src/components/Shared/Sidebar.html"></module>
+    <section class="main__section-container">
+      <h1 class="header">Dashboard</h1>
+      <div class="stats">
+        <div class="stats__item">
+          Today
+          <span>$33k / 130 Orders</span>
+        </div>
+        <div class="stats__item">
+          Today
+          <span>$33k / 130 Orders</span>
+        </div>
+        <div class="stats__item">
+          Today
+          <span>$33k / 130 Orders</span>
+        </div>
+      </div>
+      <div class="revenue-toggle_chart">
+        <h1 class="header">Revenue in last 7 days</h1>
+
+        <module href="src/components/modal/modal.html"></module>
+        <div class="chart"></div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
