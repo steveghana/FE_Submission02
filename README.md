@@ -1,10 +1,6 @@
-# stracciatella
-
-Boilerplate for a simple vanilla JS front-end app with components and state management
-
-## Requirements
-
-node version `15.14.0`
+# Halloween Order tracker
+ 
+A simple SP app built with javascript bundled with webpack.
 
 ## Install
 
