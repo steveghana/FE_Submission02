@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <module href="src/components/Shared/Appbar.html"></module>
+    <main class="Order__container">
+        <module href="src/components/Shared/Sidebar.html"></module>
+        <section class="Order__section-container">
+            <div class="Order_header_search-container">
+                <h1 class="header">Orders</h1>
+                <div class="input_search">
+                    <span class="input">
+                        <span class="search_icon"></span>
+                        <input id="autocomplete" type="text" placeholder="search ...">
+                    </span>
+                </div>
+            </div>
+            <div class="table_container">
+                <div class="table_headers">
+                    <div>Product Name</div>
+                    <div>Date</div>
+                    <div>Price</div>
+                    <div>Status</div>
+                </div>
+                <div class="table__data"></div>
+            </div>
+            <div class="modal">
+                Page <div class="icon-prev"></div> <span class="page_num"></span>
+                <div class="icon-next"></div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
