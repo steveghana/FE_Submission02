@@ -29,15 +29,23 @@
     min-width: 10vw;
     padding: 1rem;
     height: calc(100vh - 50px);
-    background-color: green;
+    border-right: 2px solid var(--border-default);
 
     ul {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      // align-items: center;
       gap: 2rem;
       li {
-        font-size: 2rem;
+        font-size: 1.4rem;
       }
+    }
+    .svg_logo {
+      svg {
+        width: 70px;
+      }
+      padding: 1rem;
     }
   }
 }
