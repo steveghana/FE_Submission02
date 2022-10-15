@@ -10,11 +10,7 @@
       components: [],
     };
   </script>
-  <include src="components/Shared/head/head.html">
-    {
-    "title_text": "Home Page"
-    }
-  </include>
+  <title>Home</title>
 </head>
 
 <body>
@@ -26,22 +22,30 @@
       <div class="stats">
         <div class="stats__item">
           Today
-          <span>$33k / 130 Orders</span>
+          <span class="stats_data"></span>
         </div>
         <div class="stats__item">
-          Today
-          <span>$33k / 130 Orders</span>
+          Last Week
+          <span class="stats_data"></span>
         </div>
         <div class="stats__item">
-          Today
-          <span>$33k / 130 Orders</span>
+          Last Month
+          <span class="stats_data"></span>
         </div>
       </div>
       <div class="revenue-toggle_chart">
         <h1 class="header">Revenue in last 7 days</h1>
-
         <module href="src/components/modal/modal.html"></module>
-        <div class="chart"></div>
+        <canvas class="chart" width="400" height="400"></canvas>
+        <div class="best__seller-container">
+          <div class="best__seller-headers">
+            <div>Product Name</div>
+            <div>price</div>
+            <div># Unit sold</div>
+            <div>Revenue</div>
+          </div>
+          <div class="best__seller-data"></div>
+        </div>
       </div>
     </section>
   </main>
