@@ -1,22 +1,23 @@
 .form {
-  width: 30%;
+  // width: 30%;
   height: calc(100vh - 50px);
   display: flex;
   justify-content: center;
-  margin: 0 auto;
   &__container {
-    padding: 5rem 3rem;
+    margin: 0 auto;
+    padding: 2.4rem 2rem;
     border: 4px solid gray;
-    margin: auto;
     display: flex;
     flex-direction: column;
+    margin: auto;
     gap: 2rem;
     align-items: center;
     justify-content: center;
   }
   &__title {
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2rem;
+    gap: 1rem;
     font-weight: lighter;
     align-items: center;
     display: flex;
@@ -25,7 +26,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 2rem;
+    gap: 1rem;
     button,
     input {
       width: 100%;
