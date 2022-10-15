@@ -1,0 +1,51 @@
+/*======= APP-BAR ========*/
+.nav {
+  &__container {
+    width: 100%;
+    padding: 1rem;
+    background: blue;
+    display: flex;
+    gap: 1rem;
+
+    .color {
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      &:nth-child(1) {
+        background-color: var(--dark-red);
+      }
+      &:nth-child(2) {
+        background-color: var(--yellow);
+      }
+      &:nth-child(3) {
+        background-color: var(--green);
+      }
+    }
+  }
+}
+/* ========== SIDEBAR ========== */
+.sidebar {
+  &__container {
+    min-width: 10vw;
+    padding: 1rem;
+    height: calc(100vh - 50px);
+    border-right: 2px solid var(--border-default);
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // align-items: center;
+      gap: 2rem;
+      li {
+        font-size: 1.4rem;
+      }
+    }
+    .svg_logo {
+      svg {
+        width: 70px;
+      }
+      padding: 1rem;
+    }
+  }
+}
