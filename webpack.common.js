@@ -48,8 +48,21 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/pages/home/home.html",
+      inject: "body",
+      template: "./src/pages/Login.html",
       filename: "index.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/Order.html",
+      filename: "Order.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/Login.html",
+      filename: "Login.html",
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/pages/home.html",
+      filename: "home.html",
     }),
   ],
 };
