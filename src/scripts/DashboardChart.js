@@ -1,3 +1,4 @@
+// import { Chart } from "chart.js";
 export function DashboardChart(dashboard) {
   const {
     sales_over_time_week: salesWeek,
@@ -33,28 +34,28 @@ export function DChart(dashboard, weekOryear) {
   }
 
   let element = document.querySelector(".chart").getContext("2d");
-  //   new Chart(element, {
-  //     type: "bar",
-  //     data: {
-  //       labels: [...newlable],
-  //       data: [13, 10, 3, 6, 3, 7],
-  //       datasets: [
-  //         {
-  //           label: "* of votes",
-  //           backgroundColor: "white",
-  //           borderColor: "red",
-  //           borderWidth: 2,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       scales: {
-  //         yAxes: {
-  //           beginAtZero: true,
-  //         },
-  //       },
-  //     },
-  //   });
+  new Chart(element, {
+    type: "bar",
+    data: {
+      labels: [...newlable],
+      data: [13, 10, 3, 6, 3, 7],
+      datasets: [
+        {
+          label: "* of votes",
+          backgroundColor: "white",
+          borderColor: "red",
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        yAxes: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
   //   renderBestSeller(bestsellers);
 }
 
