@@ -1,5 +1,5 @@
 // import { customersData } from "./components/modal/dummy";
-import * as customersData from "./data.json";
+import * as Order from "./data.json";
 import * as dashboard from "./dashboard.json";
 
 import { bestSeller, DashboardChart, DChart } from "./scripts/DashboardChart";
@@ -19,19 +19,19 @@ let options = {
   },
 };
 
+localStorage.setItem("dashboard", JSON.stringify(dashboard));
+localStorage.setItem("order", JSON.stringify(Order));
 async function dataFetching() {
   // const res = await axios
   //   .get(`https://freddy.codesubmit.io/dashboard`, options)
   //   .catch((error) => {
   //     console.log(error.message);
   //   });
-  // localStorage.setItem("dahsboard", JSON.stringify(res));
   // const order = await axios
   //   .get(`https://freddy.codesubmit.io/orders`, options)
   //   .catch((error) => {
   //     throw new Error(error.message);
   //   });
-  // localStorage.setItem("order", JSON.stringify(order));
 }
 async function initialise() {
   /* ROOT INITIALIZER  */
@@ -54,6 +54,7 @@ async function initialise() {
   } else {
     /* === DASHBOARD CHARTS AND BESTSELLER */
     DashboardChart(dashboard);
+    // DChart(dashboard);
   }
 }
 function AutoComplete(TableElements, orders, getSlice) {

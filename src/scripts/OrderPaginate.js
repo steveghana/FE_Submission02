@@ -45,7 +45,7 @@ function Modal(DOMelement, response) {
     const currentPage = response.slice(indexOfFirstPost, indexOflastPost);
     return currentPage;
   };
-  this.manipulateDom = (data = []) => {
+  this.addElementsToTable = (data = []) => {
     let Elementcontainer = document.body.querySelector(".table__data");
     if (Elementcontainer.hasChildNodes()) clearDom(Elementcontainer);
     data.forEach((item) => {
@@ -58,8 +58,8 @@ function Modal(DOMelement, response) {
       productName.classList.add("product__name-item");
       productStatus.classList.add("product__status-item");
       /* === ADD INNERTEXT === */
-      productName.innerText = item.ProjectName;
-      productStatus.innerText = item.CustomerID;
+      productName.innerText = item.product.name;
+      productStatus.innerText = item.status;
       /* === APPEND TO CONTAINER === */
       wrapper.append(productName, productStatus);
       Elementcontainer.appendChild(wrapper);

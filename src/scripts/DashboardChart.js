@@ -1,4 +1,5 @@
-// import { Chart } from "chart.js";
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
 export function DashboardChart(dashboard) {
   const {
     sales_over_time_week: salesWeek,
@@ -27,17 +28,16 @@ export function DChart(dashboard, weekOryear) {
   let daysOfWeek = 7;
   let monthsInYear = 12;
   let keys = Object.keys(salesWeek);
-  for (let i = 0; i < keys.length; i++) {
-    if (i < 2) continue;
-    // salesWeek[keys[i]].total
-    newlable.push(`day ${+keys[i]}`);
-  }
-
+  //   for (let i = 0; i < keys.length; i++) {
+  //     if (i < 2) continue;
+  //     // salesWeek[keys[i]].total
+  //     newlable.push(`day ${+keys[i]}`);
+  //   }
   let element = document.querySelector(".chart").getContext("2d");
   new Chart(element, {
-    type: "bar",
+    type: "line",
     data: {
-      labels: [...newlable],
+      labels: [13, 10, 3, 6, 3, 7],
       data: [13, 10, 3, 6, 3, 7],
       datasets: [
         {
@@ -50,9 +50,13 @@ export function DChart(dashboard, weekOryear) {
     },
     options: {
       scales: {
-        yAxes: {
-          beginAtZero: true,
-        },
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+          },
+        ],
       },
     },
   });
