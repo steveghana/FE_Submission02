@@ -1,7 +1,6 @@
-import { customersData } from "../components/modal/dummy";
-export function autocomplete(data) {
-  let filter = customersData.filter((item) =>
-    item.ProjectName.toLowerCase().includes(data.toLowerCase())
+export function autocomplete(data, orders) {
+  let filter = orders.filter((item) =>
+    item.product.name.trim().toLowerCase().includes(data.trim().toLowerCase())
   );
   return filter;
 }
