@@ -1,4 +1,26 @@
-export function autocomplete(data, orders) {
+/**
+ * A function to track a get user search input and render on order screen.
+ */
+export function AutoComplete(TableElements, orders, getSlice) {
+  let inputdata = document.getElementById("autocomplete");
+  inputdata.addEventListener("keydown", (event) => {
+    let data = event.target.value;
+    let newdata = getMatch(data, orders);
+    if (newdata.length > 10) {
+      TableElements(getSlice(1));
+    } else {
+      TableElements(newdata);
+    }
+  });
+}
+
+/**
+ * A function to get string equivalent from data
+ * @returns array of string equivalent
+ * @param data this represent the search match.
+ * @param orders this represent the data to filter.
+ */
+function getMatch(data, orders) {
   let filter = orders.filter((item) =>
     item.product.name.trim().toLowerCase().includes(data.trim().toLowerCase())
   );
