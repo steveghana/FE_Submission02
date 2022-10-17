@@ -1,12 +1,18 @@
 import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
-export function DashboardChart(dashboard) {
+/**
+ * A function to render respective revenue, order stats and best sellers table
+ *
+ * @param dashboard this represent the data array consisting of orders, revenues and bestsellers.
+ */
+export function RevenueStats(dashboard) {
   const {
     sales_over_time_week: salesWeek,
     sales_over_time_year: salesMonth,
     bestsellers,
   } = dashboard;
   let statsElement = document.querySelectorAll(".stats_data");
+  /* == INTERNATIONALIZATION API == */
   let { format } = Intl.NumberFormat("en", { notation: "compact" });
   let today = salesWeek[1];
   let lastWeek = salesWeek[7];
@@ -14,57 +20,84 @@ export function DashboardChart(dashboard) {
   statsElement[0].innerText = `${format(today.total)} / ${today.orders} orders`;
   statsElement[1].innerHTML = `${format(lastWeek.total)} / ${lastWeek.orders} orders`;
   statsElement[2].innerText = `${format(lastMonth.total)} / ${lastMonth.orders} orders`;
-  renderBestSeller(bestsellers);
+  renderBestSellerData(bestsellers);
 }
 
-export function DChart(dashboard, weekOryear) {
-  const {
-    sales_over_time_week: salesWeek,
-    sales_over_time_year: salesMonth,
-    bestsellers,
-  } = dashboard;
-  let newlable = ["today", "yesterday"];
+export function RevenueChart(weekOryear, time) {
+  let newCanvas = document.querySelector("#chart").getContext("2d");
+  let chartRevenueHeader = document.querySelector(".revenue__header");
+  let year = "12 months";
+  let week = "7 days";
+  chartRevenueHeader.innerText = `Revenue (last ${time === "month" ? year : week})`;
+  let newLable;
+  if (time === "month") {
+    newLable = ["This Month", "Last Month"];
+  } else {
+    newLable = ["today", "yesterday"];
+  }
   let newRevenueSum = [];
-  let daysOfWeek = 7;
-  let monthsInYear = 12;
-  let keys = Object.keys(salesWeek);
-  //   for (let i = 0; i < keys.length; i++) {
-  //     if (i < 2) continue;
-  //     // salesWeek[keys[i]].total
-  //     newlable.push(`day ${+keys[i]}`);
-  //   }
-  let element = document.querySelector(".chart").getContext("2d");
-  new Chart(element, {
+  let keys = Object.keys(weekOryear);
+  for (let i = 0; i < keys.length; i++) {
+    if (i < 2) continue;
+    newRevenueSum.push(weekOryear[keys[i]].total);
+    newLable.push(`${time} ${+keys[i]}`);
+  }
+  let config = {
     type: "line",
     data: {
-      labels: [13, 10, 3, 6, 3, 7],
-      data: [13, 10, 3, 6, 3, 7],
+      labels: [...newLable],
+      data: [...newRevenueSum],
       datasets: [
         {
-          label: "* of votes",
-          backgroundColor: "white",
-          borderColor: "red",
-          borderWidth: 2,
+          label: `${time}ly revenue`,
+          fill: true,
+          backgroundColor: [
+            "rgb(241, 252, 79)",
+            "tomato",
+            "orange",
+            "brown",
+            "green",
+            "yellowgreen",
+          ],
+          borderColor: [
+            "rgb(241, 252, 79)",
+            "tomato",
+            "orange",
+            "skyblue",
+            "green",
+            "yellowgreen",
+          ],
+          borderWidth: 1,
         },
       ],
     },
     options: {
       scales: {
-        yAxes: [
-          {
-            ticks: {
-              beginAtZero: true,
-            },
-          },
-        ],
+        y: {
+          beginAtZero: true,
+        },
       },
     },
-  });
-  //   renderBestSeller(bestsellers);
+  };
+  /*
+   This will destroy and recreate 
+   new chart instance when toggled 
+   to avoid collision 
+   */
+  let chartStatus = Chart.getChart("chart");
+  if (chartStatus !== undefined) {
+    chartStatus.destroy();
+  }
+  let chartCanvas = document.getElementById("chart");
+  newCanvas = new Chart(chartCanvas, config);
 }
 
-export const renderBestSeller = (products) => {
-  let slice = products.slice(0, 3);
+/**
+ * Renders the best seller data table on the ui
+ * @param bestSellerInfo info on best seller
+ */
+export const renderBestSellerData = (bestSellerInfo) => {
+  let slice = bestSellerInfo.slice(0, 3); //We need 3 items
   slice.forEach((item, i) => {
     let parentElement = document.querySelector(".best__seller-data");
     /* === CREATE ELEMENT */

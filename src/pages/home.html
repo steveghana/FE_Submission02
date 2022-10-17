@@ -34,9 +34,18 @@
         </div>
       </div>
       <div class="revenue-toggle_chart">
-        <h1 class="header">Revenue in last 7 days</h1>
-        <module href="src/components/modal/modal.html"></module>
-        <canvas class="chart"></canvas>
+        <div class="header-toggle__chart">
+          <h1 class="revenue__header">
+
+          </h1>
+          <span class="toggle">
+            <div class="toggle__inner move__right"></div>
+          </span>
+        </div>
+        <div class="chart_container">
+          <canvas id="chart"></canvas>
+        </div>
+        <h1 style="padding: 1rem 0;" class="header">Bestsellers</h1>
         <div class="best__seller-container">
           <div class="best__seller-headers">
             <div>Product Name</div>
