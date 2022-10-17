@@ -1,13 +1,13 @@
 /**
- * A function to track a get user search input and render on order screen.
+ * A function to track a user search input, get match and render on order table.
  */
 export function AutoComplete(TableElements, orders, getSlice) {
   let inputdata = document.getElementById("autocomplete");
-  inputdata.addEventListener("keydown", (event) => {
-    let data = event.target.value;
+  inputdata.addEventListener("keydown", ({ target }) => {
+    let data = target.value;
     let newdata = getMatch(data, orders);
     if (newdata.length > 10) {
-      TableElements(getSlice(1));
+      TableElements(getSlice(1)); //Slice to 10 items
     } else {
       TableElements(newdata);
     }

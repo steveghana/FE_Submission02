@@ -6,7 +6,7 @@
 function Pagination(response) {
   const POSTPERPAGE = 10;
   let currentPage = 1;
-  const DATALENGTH = +Math.ceil(response.length / POSTPERPAGE);
+  const DATALENGTH = +Math.ceil(response?.length / POSTPERPAGE);
   const pageNumData = document.querySelector(".page_num");
   const btnPrev = document
     .querySelector(".icon-prev")
@@ -66,7 +66,7 @@ function Pagination(response) {
   /**
    * A public function which creates slices of data from an array for pagination
    *
-   * @param newPage this represents the starting point or current page.
+   * @param newPage a number which represents the starting point or current page.
    */
   this.getSlice = (newPage) => {
     pageNumData.innerText = `${currentPage > 1 ? currentPage : newPage} of ${DATALENGTH}`;
