@@ -2,11 +2,22 @@
 .nav {
   &__container {
     width: 100%;
-    padding: 1rem;
+    height: 7vh;
+    padding: 0 1rem;
     background: blue;
     display: flex;
+    align-items: center;
     gap: 1rem;
-
+    ul {
+      display: none;
+      color: white;
+      list-style-type: none;
+      @include respond(mobile) {
+        display: flex;
+        gap: 1rem;
+        margin: auto;
+      }
+    }
     .color {
       width: 30px;
       height: 30px;
@@ -26,16 +37,17 @@
 /* ========== SIDEBAR ========== */
 .sidebar {
   &__container {
+    @include respond(mobile) {
+      display: none;
+    }
     min-width: 10vw;
     padding: 1rem;
     height: calc(100vh - 50px);
     border-right: 2px solid var(--border-default);
-
     ul {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // align-items: center;
       gap: 2rem;
       li {
         font-size: 1.4rem;
