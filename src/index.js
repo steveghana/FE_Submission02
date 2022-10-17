@@ -1,3 +1,5 @@
+import * as Order from "./data.json";
+import * as dashboard from "./dashboard.json";
 import axios from "axios";
 import Paginate from "./scripts/OrderPaginate";
 import { AutoComplete } from "./scripts/autoComplete";
@@ -6,6 +8,23 @@ import { RevenueStats, RevenueChart } from "./scripts/DashboardChart";
 import "./styles/main.scss";
 
 /* ==================*/
+/**
+ * A function to serve as a gateway for authentication
+ */
+function Auth() {
+  let initialValues = {
+    username: "",
+    password: "",
+  };
+  let Form = document.querySelector("form");
+  let userDetails = getInputData(initialValues, Form);
+  Form &&
+    Form.addEventListener("submit", (event) => submitAndRouteToHome(event, userDetails));
+  let { pathname } = window.location;
+  if (pathname === "/Login.html" || pathname === "/") return;
+  initialiseApp();
+}
+
 /**
  * A function to fetch data for dashboard and order
  * @param token tokenized string for api authentication
@@ -20,8 +39,8 @@ async function Requests(token) {
   };
   let errorHandler = document.querySelector(".error__handler");
   try {
-    const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
-    const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
+    // const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
+    // const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
     if (!dashboard && !Order) return;
     /* TO DO: save data to local storage or cookies. Route to homepage  */
     localStorage.clear();
@@ -32,6 +51,7 @@ async function Requests(token) {
     errorHandler.innerHTML = `${error.message}`;
   }
 }
+
 /**
  * A function to route to home homepage after authentication has been completed
  * @param event events on HTML element
@@ -39,33 +59,14 @@ async function Requests(token) {
  */
 async function submitAndRouteToHome(event, userDetails) {
   event.preventDefault();
-  let token = await formSubmit(userDetails);
-  if (!token) return;
-  let success = Requests(token);
+  let { access_token, refresh_token } = await formSubmit(userDetails);
+  if (!token && !refresh_token) return;
+  let success = Requests(access_token || refresh_token);
   if (!success) return;
   event = event || window.event;
   event.preventDefault();
   window.history.pushState({}, "", "home.html");
   window.location.reload();
-}
-
-/**
- * A function to serve as a gateway for authentication
- */
-function Auth() {
-  let initialValues = {
-    username: "",
-    password: "",
-  };
-  let Form = document.querySelector("form");
-  let userDetails = getInputData(initialValues, Form);
-  Form &&
-    Form.addEventListener("submit", (event) => submitAndRouteToHome(event, userDetails));
-  let { pathname } = window.location;
-  if (pathname !== "/Login.html") {
-    initialiseApp();
-  }
-  return;
 }
 
 /* SINGLE SOURCE OF DATA */
