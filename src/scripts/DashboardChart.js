@@ -23,43 +23,7 @@ export function RevenueStats(dashboard) {
   renderBestSellerData(bestsellers);
 }
 
-// let config = {
-//   type: "line",
-//   data: {
-//     labels: [...newLable],
-//     data: [...newRevenueSum],
-//     datasets: [
-//       {
-//         label: `${time}ly revenue`,
-//         fill: true,
-//         backgroundColor: [
-//           "rgb(241, 252, 79)",
-//           "tomato",
-//           "orange",
-//           "brown",
-//           "green",
-//           "yellowgreen",
-//         ],
-//
-//       },
-//     ],
-//   },
-//
-// };
-// /*
-//  This will destroy and recreate
-//  new chart instance when toggled
-//  to avoid collision
-//  */
-// let chartStatus = Chart.getChart("chart");
-// if (chartStatus !== undefined) {
-//   chartStatus.destroy();
-// }
-// let chartCanvas = document.getElementById("chart");
-// newCanvas = new Chart(chartCanvas, config);
-
 export function RevenueChart(weekOryear, time) {
-  let newCanvas = document.getElementById("chart").getContext("2d");
   let chartRevenueHeader = document.querySelector(".revenue__header");
   let year = "12 months";
   let week = "7 days";
