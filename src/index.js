@@ -1,11 +1,9 @@
-import * as Order from "./data.json";
-import * as dashboard from "./dashboard.json";
 import axios from "axios";
 import Paginate from "./scripts/OrderPaginate";
 import { AutoComplete } from "./scripts/autoComplete";
 import { getInputData, formSubmit } from "./scripts/loginAuth";
 import { RevenueStats, RevenueChart } from "./scripts/DashboardChart";
-import "./styles/main.scss";
+import "./Designs/styles/main.scss";
 
 /* ==================*/
 /**
@@ -39,8 +37,8 @@ async function Requests(token) {
   };
   let errorHandler = document.querySelector(".error__handler");
   try {
-    // const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
-    // const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
+    const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
+    const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
     if (!dashboard && !Order) return;
     /* TO DO: save data to local storage or cookies. Route to homepage  */
     localStorage.clear();
@@ -60,7 +58,7 @@ async function Requests(token) {
 async function submitAndRouteToHome(event, userDetails) {
   event.preventDefault();
   let { access_token, refresh_token } = await formSubmit(userDetails);
-  if (!token && !refresh_token) return;
+  if (!access_token && !refresh_token) return;
   let success = Requests(access_token || refresh_token);
   if (!success) return;
   event = event || window.event;
