@@ -1,7 +1,7 @@
 {
   "name": "Halloween-Dashboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple Dashboard SP app built with javascript bundled with webpack.",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --config webpack.dev.js",

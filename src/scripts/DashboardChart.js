@@ -109,8 +109,9 @@ export const renderBestSellerData = (bestSellerInfo) => {
     productName.classList.add("best__seller-name-item");
     productStatus.classList.add("best__seller-status-item");
     /* === ADD INNERTEXT === */
+    let { format } = Intl.NumberFormat("en", { notation: "compact" });
     productName.innerText = item.product.name;
-    productStatus.innerText = item.revenue;
+    productStatus.innerText = format(item.revenue);
     /* === APPEND TO CONTAINER === */
     RowContainer.append(productName, productStatus);
     parentElement.appendChild(RowContainer);
