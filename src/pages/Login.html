@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -18,9 +18,10 @@
                 <module href="src/components/Shared/Svg.html"></module>
             </div>
             <form onsubmit="">
-                <input autocomplete="off" required type="text" name="username" placeholder="username">
-                <input required="true" type="password" name="password" placeholder="password">
-                <button type="submit"><a href="home.html">Login</a> </button>
+                <input class="username" autocomplete="off" required type="text" name="username" placeholder="username">
+                <input class="password" required="true" type="password" name="password" placeholder="password">
+                <div class="error__handler" style="color: red; text-align:center;"></div>
+                <button class="form__submit" type="submit">Login </button>
             </form>
         </div>
     </main>

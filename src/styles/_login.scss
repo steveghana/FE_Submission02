@@ -1,5 +1,4 @@
 .form {
-  // width: 30%;
   height: calc(100vh - 50px);
   display: flex;
   justify-content: center;
@@ -27,6 +26,9 @@
     flex-direction: column;
     width: 100%;
     gap: 1rem;
+    .error__handler {
+      height: 60px;
+    }
     button,
     input {
       width: 100%;
@@ -35,7 +37,6 @@
       outline: none;
     }
     button {
-      margin-top: 3rem;
       &:hover {
         background-color: blue;
         color: white;
