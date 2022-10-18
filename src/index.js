@@ -39,7 +39,7 @@ async function Requests(token) {
   try {
     const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
     const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
-    if (!dashboard && !Order) return;
+    if (!dashboard && !Order) return false;
     /* TO DO: save data to local storage or cookies. Route to homepage  */
     localStorage.clear();
     localStorage.setItem("dashboard", JSON.stringify(dashboard));
@@ -59,7 +59,8 @@ async function submitAndRouteToHome(event, userDetails) {
   event.preventDefault();
   let { access_token, refresh_token } = await formSubmit(userDetails);
   if (!access_token && !refresh_token) return;
-  let success = Requests(access_token || refresh_token);
+  let success = await Requests(access_token || refresh_token);
+  console.log(success);
   if (!success) return;
   event = event || window.event;
   event.preventDefault();
@@ -71,9 +72,11 @@ async function submitAndRouteToHome(event, userDetails) {
 const Store = () => {
   let {
     data: { orders },
+    //@ts-ignore
   } = JSON.parse(localStorage.getItem("order"));
   let {
     data: { dashboard },
+    //@ts-ignore
   } = JSON.parse(localStorage.getItem("dashboard"));
   return { dashboard, orders };
 };

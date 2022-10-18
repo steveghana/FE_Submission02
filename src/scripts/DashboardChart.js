@@ -83,13 +83,12 @@ export function RevenueChart(weekOryear, time) {
   new chart instance when toggled
   to avoid collision
   */
-
   let chartStatus = Chart.getChart("chart");
   if (chartStatus !== undefined) {
     chartStatus.destroy();
   }
   let chartCanvas = document.getElementById("chart");
-  newCanvas = new Chart(chartCanvas, config);
+  new Chart(chartCanvas, config);
 }
 
 /**
@@ -109,8 +108,9 @@ export const renderBestSellerData = (bestSellerInfo) => {
     productName.classList.add("best__seller-name-item");
     productStatus.classList.add("best__seller-status-item");
     /* === ADD INNERTEXT === */
+    let { format } = Intl.NumberFormat("en", { notation: "compact" });
     productName.innerText = item.product.name;
-    productStatus.innerText = item.revenue;
+    productStatus.innerText = format(item.revenue);
     /* === APPEND TO CONTAINER === */
     RowContainer.append(productName, productStatus);
     parentElement.appendChild(RowContainer);

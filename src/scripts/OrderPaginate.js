@@ -36,7 +36,7 @@ function Pagination(response) {
   /**
    * A private function which dynamically renders colors based on string type
    *
-   * @param name this represents the starting point or current page.
+   * @param name this represents the dynamic string.
    * @param element  this represents the tag elements to set the colors: Destructured to return the style object.
    */
   const rendStatuscolor = (name, { style }) => {
@@ -82,7 +82,7 @@ function Pagination(response) {
    */
   this.addElementsToTable = (data = []) => {
     let Elementcontainer = document.body.querySelector(".table__data");
-    if (Elementcontainer.hasChildNodes()) clearTable(Elementcontainer);
+    if (Elementcontainer.hasChildNodes()) clearTable(Elementcontainer); //ON each pagination
     data.forEach((item) => {
       /* === CREATE ELEMENT */
       let wrapper = document.createElement("div");

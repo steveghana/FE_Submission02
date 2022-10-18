@@ -7,16 +7,17 @@ import axios from "axios";
  */
 export async function formSubmit(userDetails) {
   let errorHandler = document.querySelector(".error__handler");
-  console.log(userDetails);
+  errorHandler.innerHTML = "";
   try {
-    let { access_token, refresh_token } = await axios.post(
-      "https://freddy.codesubmit.io/login",
-      userDetails
-    );
-    if (!access_token) return false;
+    let {
+      data: { access_token, refresh_token },
+    } = await axios.post("https://freddy.codesubmit.io/login", userDetails);
+    if (!access_token || !refresh_token) return false;
     return { access_token, refresh_token };
   } catch (error) {
-    errorHandler.innerHTML = `${error?.message || error?.response?.data?.msg}`;
+    errorHandler.innerHTML = error.response
+      ? `${error?.response?.data?.msg}`
+      : `${error.message}`;
   }
 }
 /**
