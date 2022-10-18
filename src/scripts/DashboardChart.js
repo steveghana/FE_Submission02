@@ -83,13 +83,12 @@ export function RevenueChart(weekOryear, time) {
   new chart instance when toggled
   to avoid collision
   */
-
   let chartStatus = Chart.getChart("chart");
   if (chartStatus !== undefined) {
     chartStatus.destroy();
   }
   let chartCanvas = document.getElementById("chart");
-  newCanvas = new Chart(chartCanvas, config);
+  new Chart(chartCanvas, config);
 }
 
 /**
