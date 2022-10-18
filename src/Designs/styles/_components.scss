@@ -10,8 +10,10 @@
     gap: 1rem;
     ul {
       display: none;
-      color: white;
       list-style-type: none;
+      a {
+        color: white !important;
+      }
       @include respond(mobile) {
         display: flex;
         gap: 1rem;
