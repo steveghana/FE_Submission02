@@ -1,6 +1,6 @@
 # Halloween Order tracker
  
-A simple SP app built with javascript bundled with webpack.
+This is a simple single page Dashboard app built with Javascript bundled with webpack.
 
 ## Install
 
