@@ -7,15 +7,16 @@ import axios from "axios";
  */
 export async function formSubmit(userDetails) {
   let errorHandler = document.querySelector(".error__handler");
+  console.log(userDetails);
   try {
-    let { access_token } = await axios.post(
+    let { access_token, refresh_token } = await axios.post(
       "https://freddy.codesubmit.io/login",
       userDetails
     );
     if (!access_token) return false;
-    return access_token;
+    return { access_token, refresh_token };
   } catch (error) {
-    errorHandler.innerHTML = `${error.message}`;
+    errorHandler.innerHTML = `${error?.message || error?.response?.data?.msg}`;
   }
 }
 /**
@@ -25,7 +26,7 @@ export async function formSubmit(userDetails) {
  */
 export function getInputData(data, Form) {
   if (!Form) return;
-  Form?.querySelectorAll("input")?.forEach((item) => {
+  [...Form?.querySelectorAll("input")]?.forEach((item) => {
     item.addEventListener("change", (e) => {
       data[e.target.name] = e.target.value;
     });

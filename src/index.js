@@ -3,9 +3,26 @@ import Paginate from "./scripts/OrderPaginate";
 import { AutoComplete } from "./scripts/autoComplete";
 import { getInputData, formSubmit } from "./scripts/loginAuth";
 import { RevenueStats, RevenueChart } from "./scripts/DashboardChart";
-import "./styles/main.scss";
+import "./Designs/styles/main.scss";
 
 /* ==================*/
+/**
+ * A function to serve as a gateway for authentication
+ */
+function Auth() {
+  let initialValues = {
+    username: "",
+    password: "",
+  };
+  let Form = document.querySelector("form");
+  let userDetails = getInputData(initialValues, Form);
+  Form &&
+    Form.addEventListener("submit", (event) => submitAndRouteToHome(event, userDetails));
+  let { pathname } = window.location;
+  if (pathname === "/Login.html" || pathname === "/") return;
+  initialiseApp();
+}
+
 /**
  * A function to fetch data for dashboard and order
  * @param token tokenized string for api authentication
@@ -32,6 +49,7 @@ async function Requests(token) {
     errorHandler.innerHTML = `${error.message}`;
   }
 }
+
 /**
  * A function to route to home homepage after authentication has been completed
  * @param event events on HTML element
@@ -39,33 +57,14 @@ async function Requests(token) {
  */
 async function submitAndRouteToHome(event, userDetails) {
   event.preventDefault();
-  let token = await formSubmit(userDetails);
-  if (!token) return;
-  let success = Requests(token);
+  let { access_token, refresh_token } = await formSubmit(userDetails);
+  if (!access_token && !refresh_token) return;
+  let success = Requests(access_token || refresh_token);
   if (!success) return;
   event = event || window.event;
   event.preventDefault();
   window.history.pushState({}, "", "home.html");
   window.location.reload();
-}
-
-/**
- * A function to serve as a gateway for authentication
- */
-function Auth() {
-  let initialValues = {
-    username: "",
-    password: "",
-  };
-  let Form = document.querySelector("form");
-  let userDetails = getInputData(initialValues, Form);
-  Form &&
-    Form.addEventListener("submit", (event) => submitAndRouteToHome(event, userDetails));
-  let { pathname } = window.location;
-  if (pathname !== "/Login.html") {
-    initialiseApp();
-  }
-  return;
 }
 
 /* SINGLE SOURCE OF DATA */

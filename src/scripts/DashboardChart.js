@@ -24,7 +24,6 @@ export function RevenueStats(dashboard) {
 }
 
 export function RevenueChart(weekOryear, time) {
-  let newCanvas = document.querySelector("#chart").getContext("2d");
   let chartRevenueHeader = document.querySelector(".revenue__header");
   let year = "12 months";
   let week = "7 days";
@@ -38,36 +37,36 @@ export function RevenueChart(weekOryear, time) {
   let newRevenueSum = [];
   let keys = Object.keys(weekOryear);
   for (let i = 0; i < keys.length; i++) {
-    if (i < 2) continue;
     newRevenueSum.push(weekOryear[keys[i]].total);
+    if (i < 2) continue;
     newLable.push(`${time} ${+keys[i]}`);
   }
   let config = {
-    type: "line",
+    type: "bar",
     data: {
       labels: [...newLable],
-      data: [...newRevenueSum],
       datasets: [
         {
           label: `${time}ly revenue`,
           fill: true,
+          data: [...newRevenueSum],
           backgroundColor: [
-            "rgb(241, 252, 79)",
-            "tomato",
-            "orange",
-            "brown",
-            "green",
-            "yellowgreen",
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
           ],
           borderColor: [
-            "rgb(241, 252, 79)",
-            "tomato",
-            "orange",
-            "skyblue",
-            "green",
-            "yellowgreen",
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
           ],
-          borderWidth: 1,
+          borderWidth: 2,
         },
       ],
     },
@@ -80,10 +79,11 @@ export function RevenueChart(weekOryear, time) {
     },
   };
   /*
-   This will destroy and recreate 
-   new chart instance when toggled 
-   to avoid collision 
-   */
+ This will destroy and recreate
+  new chart instance when toggled
+  to avoid collision
+  */
+
   let chartStatus = Chart.getChart("chart");
   if (chartStatus !== undefined) {
     chartStatus.destroy();
