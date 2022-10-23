@@ -17,7 +17,9 @@ function Auth() {
   let Form = document.querySelector("form");
   let userDetails = getInputData(initialValues, Form);
   Form &&
-    Form.addEventListener("submit", (event) => submitAndRouteToHome(event, userDetails));
+    Form.addEventListener("submit", (event) =>
+      submitAndRouteToHome(event, userDetails)
+    );
   let { pathname } = window.location;
   if (pathname === "/Login.html" || pathname === "/") return;
   initialiseApp();
@@ -37,8 +39,14 @@ async function Requests(token) {
   };
   let errorHandler = document.querySelector(".error__handler");
   try {
-    const dashboard = await axios.get(`https://freddy.codesubmit.io/dashboard`, options);
-    const Order = await axios.get(`https://freddy.codesubmit.io/orders`, options);
+    const dashboard = await axios.get(
+      `https://freddy.codesubmit.io/dashboard`,
+      options
+    );
+    const Order = await axios.get(
+      `https://freddy.codesubmit.io/orders`,
+      options
+    );
     if (!dashboard && !Order) return false;
     /* TO DO: save data to local storage or cookies. Route to homepage  */
     localStorage.clear();
